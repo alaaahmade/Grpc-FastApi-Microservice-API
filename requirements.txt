@@ -1,0 +1,101 @@
+fastapi
+uvicorn
+grpcio
+grpcio-tools
+sqlalchemy-----                                                                           
+ > [4/6] RUN pip install --no-cache-dir -r requirements.txt:                     
+2.521 Collecting fastapi (from -r requirements.txt (line 1))                     
+3.383   Downloading fastapi-0.116.1-py3-none-any.whl.metadata (28 kB)            
+3.698 Collecting uvicorn (from -r requirements.txt (line 2))                     
+3.781   Downloading uvicorn-0.35.0-py3-none-any.whl.metadata (6.5 kB)            
+7.944 Collecting grpcio (from -r requirements.txt (line 3))
+8.054   Downloading grpcio-1.73.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+13.88 Collecting grpcio-tools (from -r requirements.txt (line 4))
+13.98   Downloading grpcio_tools-1.73.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+18.17 Collecting sqlalchemy (from -r requirements.txt (line 5))
+18.30   Downloading sqlalchemy-2.0.41-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.6 kB)
+20.23 Collecting pydantic (from -r requirements.txt (line 6))
+20.97   Downloading pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+21.38 Collecting python-dotenv (from -r requirements.txt (line 7))
+21.49   Downloading python_dotenv-1.1.1-py3-none-any.whl.metadata (24 kB)
+22.22 Collecting watchdog (from -r requirements.txt (line 8))
+22.32   Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl.metadata (44 kB)
+24.34 Collecting psycopg2-binary (from -r requirements.txt (line 9))
+24.42   Downloading psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+24.98 Collecting mysqlclient (from -r requirements.txt (line 10))
+25.07   Downloading mysqlclient-2.2.7.tar.gz (91 kB)
+25.35   Installing build dependencies: started
+39.28   Installing build dependencies: finished with status 'done'
+39.28   Getting requirements to build wheel: started
+39.47   Getting requirements to build wheel: finished with status 'error'
+39.48   error: subprocess-exited-with-error
+39.48   
+39.48   × Getting requirements to build wheel did not run successfully.
+39.48   │ exit code: 1
+39.48   ╰─> [33 lines of output]
+39.48       /bin/sh: 1: pkg-config: not found
+39.48       /bin/sh: 1: pkg-config: not found
+39.48       /bin/sh: 1: pkg-config: not found
+39.48       /bin/sh: 1: pkg-config: not found
+39.48       Trying pkg-config --exists mysqlclient
+39.48       Command 'pkg-config --exists mysqlclient' returned non-zero exit status 127.
+39.48       Trying pkg-config --exists mariadb
+39.48       Command 'pkg-config --exists mariadb' returned non-zero exit status 127.
+39.48       Trying pkg-config --exists libmariadb
+39.48       Command 'pkg-config --exists libmariadb' returned non-zero exit status 127.
+39.48       Trying pkg-config --exists perconaserverclient
+39.48       Command 'pkg-config --exists perconaserverclient' returned non-zero exit status 127.
+39.48       Traceback (most recent call last):
+39.48         File "/usr/local/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+39.48           main()
+39.48         File "/usr/local/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+39.48           json_out["return_val"] = hook(**hook_input["kwargs"])
+39.48                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+39.48         File "/usr/local/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+39.48           return hook(config_settings)
+39.48                  ^^^^^^^^^^^^^^^^^^^^^
+39.48         File "/tmp/pip-build-env-aml2o0wc/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 331, in get_requires_for_build_wheel
+39.48           return self._get_build_requires(config_settings, requirements=[])
+39.48                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+39.48         File "/tmp/pip-build-env-aml2o0wc/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+39.48           self.run_setup()
+39.48         File "/tmp/pip-build-env-aml2o0wc/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 317, in run_setup
+39.48           exec(code, locals())
+39.48         File "<string>", line 156, in <module>
+39.48         File "<string>", line 49, in get_config_posix
+39.48         File "<string>", line 28, in find_package_name
+39.48       Exception: Can not find valid pkg-config name.
+39.48       Specify MYSQLCLIENT_CFLAGS and MYSQLCLIENT_LDFLAGS env vars manually
+39.48       [end of output]
+39.48   
+39.48   note: This error originates from a subprocess, and is likely not a problem with pip.
+40.78 
+40.78 [notice] A new release of pip is available: 25.0.1 -> 25.1.1
+40.78 [notice] To update, run: pip install --upgrade pip
+40.78 error: subprocess-exited-with-error
+40.78 
+40.78 × Getting requirements to build wheel did not run successfully.
+40.78 │ exit code: 1
+40.78 ╰─> See above for output.
+40.78 
+40.78 note: This error originates from a subprocess, and is likely not a problem with pip.
+------
+Dockerfile.auth:7
+--------------------
+   5 |     COPY ../requirements.txt .
+   6 |     
+   7 | >>> RUN pip install --no-cache-dir -r requirements.txt
+   8 |     
+   9 |     COPY . .
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c pip install --no-cache-dir -r requirements.txt" did not complete successfully: exit code: 1
+ERROR: Service 'auth' failed to build : Build failed
+(venv) alaa@alaa-HP-ProBook-455-G7:~/Desktop/microservice/Grpc-FastApi-Microservice-API$ 
+pydantic
+python-dotenv
+watchdog
+psycopg2-binary
+mysqlclient 
+pytest
+python-multipart
+email-validator

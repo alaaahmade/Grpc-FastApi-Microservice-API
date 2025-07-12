@@ -1,0 +1,62 @@
+syntax = "proto3";
+package tasks;
+
+service TasksService {
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+  rpc UpdateTask (UpdateTaskReq) returns (UpdateTaskRes);
+  rpc GetTasks (GetTasksReq) returns (GetTasksRes);
+  rpc DeleteTask(DeleteTaskReq) returns (DeleteTaskRes);
+  rpc GetTask (GetTaskReq) returns (GetTaskRes);
+};
+
+message UpdateTaskReq{
+  string task_id= 1;
+  string task_name = 2;
+  string task_description = 3;
+};
+
+message UpdateTaskRes{
+  string task_id=1;
+  string task_name = 2;
+  string task_description = 3;
+};
+
+message Task {
+  string task_id=1;
+  string task_name = 2;
+  string task_description = 3;
+};
+
+message GetTaskReq {
+  string task_id = 1;
+};
+
+message GetTaskRes{
+  Task task = 1;
+};
+
+message GetTasksReq{};
+
+message GetTasksRes{
+  repeated Task tasks = 1;
+};
+
+message CreateTaskRequest{
+  string task_name = 1;
+  string task_description = 2;
+};
+
+message CreateTaskResponse{
+  string task_id=1;
+  string task_name = 2;
+  string task_description = 3;
+};
+
+message DeleteTaskReq{
+  string task_id = 1;
+};
+
+message DeleteTaskRes{
+  Task task = 1;
+};
+  
